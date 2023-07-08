@@ -3,22 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "gen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
+    "@graphcms/rich-text-react-renderer": "^0.6.1",
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/schema-ast": "^4.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
     "@types/node": "20.2.1",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
+    "clsx": "^1.2.1",
+    "dotenv": "^16.3.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
+    "graphql": "^16.7.1",
+    "graphql-request": "^6.1.0",
     "next": "13.4.3",
     "postcss": "8.4.23",
+    "prettier": "^2.8.8",
+    "prettier-plugin-organize-imports": "^3.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tailwind-variants": "^0.1.10",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   }
