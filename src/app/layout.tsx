@@ -1,5 +1,7 @@
-import { fontManrope } from './styles/fonts';
-import './styles/globals.css';
+import clsx from 'clsx';
+import { Header } from './_components/Header';
+import { fontManrope, fontPlexMono } from './_styles/fonts';
+import './_styles/globals.css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,8 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={[fontManrope.className, 'bg-sand'].join(' ')}>
-        {children}
+      <body
+        className={clsx(fontManrope.variable, fontPlexMono.variable, 'bg-sand')}
+      >
+        <div className="max-w-[1920px] mx-auto px-5 md:pr-20 xl:pr-36 leading-tight py-4">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );

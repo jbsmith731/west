@@ -1,25 +1,55 @@
-import { serverFetch } from './graphql/client';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+import clsx from 'clsx';
+import { serverFetch } from './_graphql/client';
 import {
   PageHomeIntroQuery,
   PageHomeIntroQueryVariables,
-} from './graphql/generated/types.generated';
-import { GET_HOME_INTRO_QUERY } from './graphql/queries/getHome';
+} from './_graphql/generated/types.generated';
+import { GET_HOME_INTRO_QUERY } from './_graphql/queries/getHome';
+import { section } from './_styles/section';
+import { caps, text } from './_styles/text';
 
 export default async function Home() {
-  const data = await serverFetch<
+  const introData = serverFetch<
     PageHomeIntroQuery,
     PageHomeIntroQueryVariables
   >(GET_HOME_INTRO_QUERY);
 
-  const { brands } = data?.pageHome ?? {};
+  const data = await introData;
+
+  const { brands, introContent } = data?.pageHome ?? {};
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ul>
-        {brands?.map((brand, index) => (
-          <li key={index}>{brand}</li>
-        ))}
-      </ul>
+    <main className="space-y-32">
+      <section className={clsx(section.root, 'pt-32')}>
+        <h2 className={section.heading}>About</h2>
+        <RichText
+          content={introContent?.raw}
+          renderers={{
+            p: ({ children }) => (
+              <p
+                className={text({
+                  size: { initial: 'lg', md: 'xl' },
+                  weight: 'bold',
+                })}
+              >
+                {children}
+              </p>
+            ),
+          }}
+        />
+      </section>
+
+      <section className={section.root}>
+        <h2 className={section.heading}>Brands</h2>
+        <ul>
+          {brands?.map((brand, index) => (
+            <li className={caps} key={index}>
+              {brand}
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }
