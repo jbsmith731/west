@@ -1,4 +1,5 @@
-import { caps } from '../_styles/text';
+import { caps } from '../../_styles/text';
+import { NextLink } from './NextLink';
 
 export const Header = () => {
   return (
@@ -9,25 +10,25 @@ export const Header = () => {
       </h1>
 
       <div>
-        <a className={caps} href="mailto:westleyaaronferguson@gmail.com">
+        <NextLink className={caps} href="mailto:westleyaaronferguson@gmail.com">
           westleyaaronferguson@gmail.com
-        </a>
+        </NextLink>
         <br />
-        <a className={caps} href="tel:321-278-2039">
+        <NextLink className={caps} href="tel:321-278-2039">
           321 278 2039
-        </a>
+        </NextLink>
       </div>
 
       <ul>
         <li className={listItem}>
-          <a className={caps} href="">
+          <NextLink className={caps} href="">
             Portfolio
-          </a>
+          </NextLink>
         </li>
         <li className={listItem}>
-          <a className={caps} href="">
+          <NextLink className={caps} href="">
             Instagram
-          </a>
+          </NextLink>
         </li>
       </ul>
     </header>

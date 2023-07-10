@@ -2,6 +2,7 @@ import { PageHomeContentQuery } from '@/app/_graphql/generated/types.generated';
 import { section } from '@/app/_styles/section';
 import { text } from '@/app/_styles/text';
 import { HygraphRichtext } from '../common/HygraphRichtext';
+import { HomeExperience } from './HomeExperience';
 
 export const HomeContent = async ({
   promise,
@@ -9,10 +10,12 @@ export const HomeContent = async ({
   promise: Promise<PageHomeContentQuery | null>;
 }) => {
   const data = await promise;
-  const { recommendations } = data?.pageHome ?? {};
+  const { recommendations, experience } = data?.pageHome ?? {};
 
   return (
     <>
+      {experience ? <HomeExperience experiences={experience} /> : null}
+
       <section className={section.root}>
         <h2 className={section.heading}>Recommendations</h2>
         <ul className="space-y-9 md:space-y-24">

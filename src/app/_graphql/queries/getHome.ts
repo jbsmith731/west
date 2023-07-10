@@ -33,6 +33,7 @@ export const GET_HOME_CONTENT_QUERY = gql`
     date
     responsibilities
     software
+    location
     description {
       raw
     }
