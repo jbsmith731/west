@@ -19,7 +19,7 @@ const config: CodegenConfig = {
     '!src/graphql/**/*',
   ],
   generates: {
-    'src/app/graphql/generated/types.generated.ts': {
+    'src/app/_graphql/generated/types.generated.ts': {
       config: {
         avoidOptionals: true,
         skipTypename: true,

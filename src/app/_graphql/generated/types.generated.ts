@@ -4388,4 +4388,6 @@ export type PageHomeIntroQuery = { pageHome: { brands: Array<string>, introHeadi
 export type PageHomeContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageHomeContentQuery = { pageHome: { experience: Array<{ title: string, position: string | null, date: string | null, responsibilities: Array<string>, software: Array<string>, description: { raw: any } | null }> } | null };
+export type PageHomeContentQuery = { pageHome: { experience: Array<{ title: string, position: string | null, date: string | null, responsibilities: Array<string>, software: Array<string>, description: { raw: any } | null }>, recommendations: Array<{ name: string, title: string | null, content: { raw: any } }> } | null };
+
+export type ExperienceFragment = { title: string, position: string | null, date: string | null, responsibilities: Array<string>, software: Array<string>, description: { raw: any } | null };
