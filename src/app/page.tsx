@@ -27,7 +27,6 @@ export default async function Home() {
   >(GET_HOME_CONTENT_QUERY);
 
   const data = await introData;
-
   const { brands, introContent } = data?.pageHome ?? {};
 
   return (
@@ -51,16 +50,18 @@ export default async function Home() {
         />
       </section>
 
-      <section className={section.root}>
-        <h2 className={section.heading}>Brands</h2>
-        <ul>
-          {brands?.map((brand, index) => (
-            <li className={caps} key={index}>
-              {brand}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {brands ? (
+        <section className={section.root}>
+          <h2 className={section.heading}>Brands</h2>
+          <ul>
+            {brands.map((brand, index) => (
+              <li className={caps} key={index}>
+                {brand}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <Suspense fallback={<div>Loading</div>}>
         <HomeContent promise={contentPromise} />

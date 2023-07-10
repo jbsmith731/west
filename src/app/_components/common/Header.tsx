@@ -20,12 +20,12 @@ export const Header = () => {
       </div>
 
       <ul>
-        <li className={listItem}>
+        <li className={headerListItem}>
           <NextLink className={caps} href="">
             Portfolio
           </NextLink>
         </li>
-        <li className={listItem}>
+        <li className={headerListItem}>
           <NextLink className={caps} href="">
             Instagram
           </NextLink>
@@ -35,4 +35,4 @@ export const Header = () => {
   );
 };
 
-const listItem = 'before:content-["-"] before:pr-[0.5ch]';
+const headerListItem = 'before:content-["-"] before:pr-[0.5ch]';
