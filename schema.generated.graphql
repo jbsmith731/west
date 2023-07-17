@@ -2211,6 +2211,35 @@ interface Node {
 }
 
 type PageHome implements Node {
+  awards(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `awards` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `awards` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: RichtextWithTitleOrderByInput
+    skip: Int
+    where: RichtextWithTitleWhereInput
+  ): [RichtextWithTitle!]!
   brands: [String!]!
 
   """The time the document was created"""
@@ -2252,6 +2281,35 @@ type PageHome implements Node {
     """Potential stages that should be returned"""
     stages: [Stage!]! = [DRAFT, PUBLISHED]
   ): [PageHome!]!
+  education(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `education` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `education` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: RichtextWithTitleOrderByInput
+    skip: Int
+    where: RichtextWithTitleWhereInput
+  ): [RichtextWithTitle!]!
   experience(
     after: String
     before: String
@@ -2409,6 +2467,35 @@ type PageHome implements Node {
     """
     locales: [Locale!]
   ): User
+  volunteering(
+    after: String
+    before: String
+    first: Int
+
+    """
+    Sets the locale of the resolved parent document as the only locale in the query's subtree.
+    
+    Note that `volunteering` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+    """
+    forceParentLocale: Boolean
+    last: Int
+
+    """
+    Allows to optionally override locale filtering behaviour in the query's subtree.
+    
+    Note that `volunteering` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+    For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+    
+    This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+    """
+    locales: [Locale!]
+    orderBy: RichtextWithTitleOrderByInput
+    skip: Int
+    where: RichtextWithTitleWhereInput
+  ): [RichtextWithTitle!]!
 }
 
 input PageHomeConnectInput {
@@ -2433,13 +2520,16 @@ type PageHomeConnection {
 }
 
 input PageHomeCreateInput {
+  awards: RichtextWithTitleCreateManyInlineInput
   brands: [String!]
   createdAt: DateTime
+  education: RichtextWithTitleCreateManyInlineInput
   experience: ExperienceCreateManyInlineInput
   introContent: RichTextAST
   introHeading: String
   recommendations: RecommedationCreateManyInlineInput
   updatedAt: DateTime
+  volunteering: RichtextWithTitleCreateManyInlineInput
 }
 
 input PageHomeCreateManyInlineInput {
@@ -2480,6 +2570,9 @@ input PageHomeManyWhereInput {
 
   """Contains search across all appropriate fields."""
   _search: String
+  awards_every: RichtextWithTitleWhereInput
+  awards_none: RichtextWithTitleWhereInput
+  awards_some: RichtextWithTitleWhereInput
 
   """
   Matches if the field array contains *all* items provided to the filter and order does match
@@ -2529,6 +2622,9 @@ input PageHomeManyWhereInput {
   documentInStages_every: PageHomeWhereStageInput
   documentInStages_none: PageHomeWhereStageInput
   documentInStages_some: PageHomeWhereStageInput
+  education_every: RichtextWithTitleWhereInput
+  education_none: RichtextWithTitleWhereInput
+  education_some: RichtextWithTitleWhereInput
   experience_every: ExperienceWhereInput
   experience_none: ExperienceWhereInput
   experience_some: ExperienceWhereInput
@@ -2640,6 +2736,9 @@ input PageHomeManyWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  volunteering_every: RichtextWithTitleWhereInput
+  volunteering_none: RichtextWithTitleWhereInput
+  volunteering_some: RichtextWithTitleWhereInput
 }
 
 enum PageHomeOrderByInput {
@@ -2658,11 +2757,14 @@ enum PageHomeOrderByInput {
 }
 
 input PageHomeUpdateInput {
+  awards: RichtextWithTitleUpdateManyInlineInput
   brands: [String!]
+  education: RichtextWithTitleUpdateManyInlineInput
   experience: ExperienceUpdateManyInlineInput
   introContent: RichTextAST
   introHeading: String
   recommendations: RecommedationUpdateManyInlineInput
+  volunteering: RichtextWithTitleUpdateManyInlineInput
 }
 
 input PageHomeUpdateManyInlineInput {
@@ -2771,6 +2873,9 @@ input PageHomeWhereInput {
 
   """Contains search across all appropriate fields."""
   _search: String
+  awards_every: RichtextWithTitleWhereInput
+  awards_none: RichtextWithTitleWhereInput
+  awards_some: RichtextWithTitleWhereInput
 
   """
   Matches if the field array contains *all* items provided to the filter and order does match
@@ -2820,6 +2925,9 @@ input PageHomeWhereInput {
   documentInStages_every: PageHomeWhereStageInput
   documentInStages_none: PageHomeWhereStageInput
   documentInStages_some: PageHomeWhereStageInput
+  education_every: RichtextWithTitleWhereInput
+  education_none: RichtextWithTitleWhereInput
+  education_some: RichtextWithTitleWhereInput
   experience_every: ExperienceWhereInput
   experience_none: ExperienceWhereInput
   experience_some: ExperienceWhereInput
@@ -2931,6 +3039,9 @@ input PageHomeWhereInput {
   """All values that are not contained in given list."""
   updatedAt_not_in: [DateTime]
   updatedBy: UserWhereInput
+  volunteering_every: RichtextWithTitleWhereInput
+  volunteering_none: RichtextWithTitleWhereInput
+  volunteering_some: RichtextWithTitleWhereInput
 }
 
 """
@@ -3826,6 +3937,417 @@ type RichText {
 
 """Slate-compatible RichText AST"""
 scalar RichTextAST
+
+type RichtextWithTitle {
+  content: RichText
+
+  """The unique identifier"""
+  id: ID!
+
+  """System stage field"""
+  stage: Stage!
+  title: String
+}
+
+input RichtextWithTitleConnectInput {
+  """
+  Allow to specify document position in list of connected documents, will default to appending at end of list
+  """
+  position: ConnectPositionInput
+
+  """Document to connect"""
+  where: RichtextWithTitleWhereUniqueInput!
+}
+
+"""A connection to a list of items."""
+type RichtextWithTitleConnection {
+  aggregate: Aggregate!
+
+  """A list of edges."""
+  edges: [RichtextWithTitleEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input RichtextWithTitleCreateInput {
+  content: RichTextAST
+  title: String
+}
+
+input RichtextWithTitleCreateManyInlineInput {
+  """Create and connect multiple existing RichtextWithTitle documents"""
+  create: [RichtextWithTitleCreateInput!]
+}
+
+input RichtextWithTitleCreateOneInlineInput {
+  """Create and connect one RichtextWithTitle document"""
+  create: RichtextWithTitleCreateInput
+}
+
+input RichtextWithTitleCreateWithPositionInput {
+  """Document to create"""
+  data: RichtextWithTitleCreateInput!
+
+  """
+  Position in the list of existing component instances, will default to appending at the end of list
+  """
+  position: ConnectPositionInput
+}
+
+"""An edge in a connection."""
+type RichtextWithTitleEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: RichtextWithTitle!
+}
+
+"""Identifies documents"""
+input RichtextWithTitleManyWhereInput {
+  """Logical AND on all given filters."""
+  AND: [RichtextWithTitleWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RichtextWithTitleWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [RichtextWithTitleWhereInput!]
+
+  """Contains search across all appropriate fields."""
+  _search: String
+  id: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID]
+
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+  title: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values that are contained in given list."""
+  title_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+}
+
+enum RichtextWithTitleOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+}
+
+union RichtextWithTitleParent = PageHome
+
+input RichtextWithTitleParentConnectInput {
+  PageHome: PageHomeConnectInput
+}
+
+input RichtextWithTitleParentCreateInput {
+  PageHome: PageHomeCreateInput
+}
+
+input RichtextWithTitleParentCreateManyInlineInput {
+  """Connect multiple existing RichtextWithTitleParent documents"""
+  connect: [RichtextWithTitleParentWhereUniqueInput!]
+
+  """Create and connect multiple existing RichtextWithTitleParent documents"""
+  create: [RichtextWithTitleParentCreateInput!]
+}
+
+input RichtextWithTitleParentCreateOneInlineInput {
+  """Connect one existing RichtextWithTitleParent document"""
+  connect: RichtextWithTitleParentWhereUniqueInput
+
+  """Create and connect one RichtextWithTitleParent document"""
+  create: RichtextWithTitleParentCreateInput
+}
+
+input RichtextWithTitleParentUpdateInput {
+  PageHome: PageHomeUpdateInput
+}
+
+input RichtextWithTitleParentUpdateManyInlineInput {
+  """Connect multiple existing RichtextWithTitleParent documents"""
+  connect: [RichtextWithTitleParentConnectInput!]
+
+  """Create and connect multiple RichtextWithTitleParent documents"""
+  create: [RichtextWithTitleParentCreateInput!]
+
+  """Delete multiple RichtextWithTitleParent documents"""
+  delete: [RichtextWithTitleParentWhereUniqueInput!]
+
+  """Disconnect multiple RichtextWithTitleParent documents"""
+  disconnect: [RichtextWithTitleParentWhereUniqueInput!]
+
+  """
+  Override currently-connected documents with multiple existing RichtextWithTitleParent documents
+  """
+  set: [RichtextWithTitleParentWhereUniqueInput!]
+
+  """Update multiple RichtextWithTitleParent documents"""
+  update: [RichtextWithTitleParentUpdateWithNestedWhereUniqueInput!]
+
+  """Upsert multiple RichtextWithTitleParent documents"""
+  upsert: [RichtextWithTitleParentUpsertWithNestedWhereUniqueInput!]
+}
+
+input RichtextWithTitleParentUpdateManyWithNestedWhereInput {
+  PageHome: PageHomeUpdateManyWithNestedWhereInput
+}
+
+input RichtextWithTitleParentUpdateOneInlineInput {
+  """Connect existing RichtextWithTitleParent document"""
+  connect: RichtextWithTitleParentWhereUniqueInput
+
+  """Create and connect one RichtextWithTitleParent document"""
+  create: RichtextWithTitleParentCreateInput
+
+  """Delete currently connected RichtextWithTitleParent document"""
+  delete: Boolean
+
+  """Disconnect currently connected RichtextWithTitleParent document"""
+  disconnect: Boolean
+
+  """Update single RichtextWithTitleParent document"""
+  update: RichtextWithTitleParentUpdateWithNestedWhereUniqueInput
+
+  """Upsert single RichtextWithTitleParent document"""
+  upsert: RichtextWithTitleParentUpsertWithNestedWhereUniqueInput
+}
+
+input RichtextWithTitleParentUpdateWithNestedWhereUniqueInput {
+  PageHome: PageHomeUpdateWithNestedWhereUniqueInput
+}
+
+input RichtextWithTitleParentUpsertWithNestedWhereUniqueInput {
+  PageHome: PageHomeUpsertWithNestedWhereUniqueInput
+}
+
+input RichtextWithTitleParentWhereInput {
+  PageHome: PageHomeWhereInput
+}
+
+input RichtextWithTitleParentWhereUniqueInput {
+  PageHome: PageHomeWhereUniqueInput
+}
+
+input RichtextWithTitleUpdateInput {
+  content: RichTextAST
+  title: String
+}
+
+input RichtextWithTitleUpdateManyInlineInput {
+  """Create and connect multiple RichtextWithTitle component instances"""
+  create: [RichtextWithTitleCreateWithPositionInput!]
+
+  """Delete multiple RichtextWithTitle documents"""
+  delete: [RichtextWithTitleWhereUniqueInput!]
+
+  """Update multiple RichtextWithTitle component instances"""
+  update: [RichtextWithTitleUpdateWithNestedWhereUniqueAndPositionInput!]
+
+  """Upsert multiple RichtextWithTitle component instances"""
+  upsert: [RichtextWithTitleUpsertWithNestedWhereUniqueAndPositionInput!]
+}
+
+input RichtextWithTitleUpdateManyInput {
+  content: RichTextAST
+  title: String
+}
+
+input RichtextWithTitleUpdateManyWithNestedWhereInput {
+  """Update many input"""
+  data: RichtextWithTitleUpdateManyInput!
+
+  """Document search"""
+  where: RichtextWithTitleWhereInput!
+}
+
+input RichtextWithTitleUpdateOneInlineInput {
+  """Create and connect one RichtextWithTitle document"""
+  create: RichtextWithTitleCreateInput
+
+  """Delete currently connected RichtextWithTitle document"""
+  delete: Boolean
+
+  """Update single RichtextWithTitle document"""
+  update: RichtextWithTitleUpdateWithNestedWhereUniqueInput
+
+  """Upsert single RichtextWithTitle document"""
+  upsert: RichtextWithTitleUpsertWithNestedWhereUniqueInput
+}
+
+input RichtextWithTitleUpdateWithNestedWhereUniqueAndPositionInput {
+  """Document to update"""
+  data: RichtextWithTitleUpdateInput
+
+  """
+  Position in the list of existing component instances, will default to appending at the end of list
+  """
+  position: ConnectPositionInput
+
+  """Unique component instance search"""
+  where: RichtextWithTitleWhereUniqueInput!
+}
+
+input RichtextWithTitleUpdateWithNestedWhereUniqueInput {
+  """Document to update"""
+  data: RichtextWithTitleUpdateInput!
+
+  """Unique document search"""
+  where: RichtextWithTitleWhereUniqueInput!
+}
+
+input RichtextWithTitleUpsertInput {
+  """Create document if it didn't exist"""
+  create: RichtextWithTitleCreateInput!
+
+  """Update document if it exists"""
+  update: RichtextWithTitleUpdateInput!
+}
+
+input RichtextWithTitleUpsertWithNestedWhereUniqueAndPositionInput {
+  """Document to upsert"""
+  data: RichtextWithTitleUpsertInput
+
+  """
+  Position in the list of existing component instances, will default to appending at the end of list
+  """
+  position: ConnectPositionInput
+
+  """Unique component instance search"""
+  where: RichtextWithTitleWhereUniqueInput!
+}
+
+input RichtextWithTitleUpsertWithNestedWhereUniqueInput {
+  """Upsert data"""
+  data: RichtextWithTitleUpsertInput!
+
+  """Unique document search"""
+  where: RichtextWithTitleWhereUniqueInput!
+}
+
+"""Identifies documents"""
+input RichtextWithTitleWhereInput {
+  """Logical AND on all given filters."""
+  AND: [RichtextWithTitleWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RichtextWithTitleWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [RichtextWithTitleWhereInput!]
+
+  """Contains search across all appropriate fields."""
+  _search: String
+  id: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID]
+
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+  title: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values that are contained in given list."""
+  title_in: [String]
+
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+}
+
+"""References RichtextWithTitle record uniquely"""
+input RichtextWithTitleWhereUniqueInput {
+  id: ID
+}
 
 """Scheduled Operation system model"""
 type ScheduledOperation implements Node {

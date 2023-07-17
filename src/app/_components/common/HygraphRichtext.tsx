@@ -17,7 +17,7 @@ export const HygraphRichtext = ({
 
 const DEFAULT_OPTIONS: RichTextProps['renderers'] = {
   p: ({ children }) => <p className={text({ size: 'regular' })}>{children}</p>,
-  a: ({ children, href, ...rest }) => {
+  a: ({ children, href, openInNewTab, ...rest }) => {
     if (!href) return <span>{children}</span>;
 
     return (

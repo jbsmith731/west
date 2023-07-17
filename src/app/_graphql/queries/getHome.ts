@@ -18,6 +18,15 @@ export const GET_HOME_CONTENT_QUERY = gql`
       experience(first: 12) {
         ...Experience
       }
+      education(first: 4) {
+        ...RichtextTitle
+      }
+      volunteering(first: 20) {
+        ...RichtextTitle
+      }
+      awards(first: 20) {
+        ...RichtextTitle
+      }
       recommendations(first: 15) {
         name
         title
@@ -35,6 +44,12 @@ export const GET_HOME_CONTENT_QUERY = gql`
     software
     location
     description {
+      raw
+    }
+  }
+  fragment RichtextTitle on RichtextWithTitle {
+    title
+    content {
       raw
     }
   }

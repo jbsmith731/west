@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "gen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local",
+    "predev": "pnpm gen",
     "dev": "next dev",
+    "prebuild": "pnpm gen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
