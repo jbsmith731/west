@@ -4,10 +4,8 @@
   "private": true,
   "scripts": {
     "gen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local",
-    "predev": "pnpm gen",
-    "dev": "next dev",
-    "prebuild": "pnpm gen",
-    "build": "next build",
+    "dev": "pnpm gen && next dev",
+    "build": "pnpm gen && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
@@ -26,16 +24,16 @@
     "clsx": "^1.2.1",
     "dotenv": "^16.3.1",
     "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
+    "eslint-config-next": "13.4.10",
     "graphql": "^16.7.1",
     "graphql-request": "^6.1.0",
-    "next": "13.4.3",
+    "next": "13.4.10",
     "postcss": "8.4.23",
     "prettier": "^2.8.8",
-    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-organize-imports": "^3.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwind-variants": "^0.1.10",
+    "tailwind-variants": "^0.1.13",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
   }
