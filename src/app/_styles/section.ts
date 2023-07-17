@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { caps } from './text';
 
-const sectionRoot = 'grid grid-flow-row gap-y-8 md:grid-cols-[260px_1fr]';
+const sectionRoot = 'grid grid-flow-row gap-y-6 md:grid-cols-[260px_1fr]';
 
 const sectionHeading = clsx(caps, 'md:sticky md:top-4');
 
