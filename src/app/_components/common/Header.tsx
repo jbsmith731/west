@@ -3,30 +3,43 @@ import { NextLink } from './NextLink';
 
 export const Header = () => {
   return (
-    <header>
+    <header className="grid grid-cols-2 gap-y-3 md:grid-cols-[260px_1fr_1fr]">
       <h1 className={caps}>
         Westley
-        <br /> Ferguson
+        <br />
+        Ferguson
       </h1>
 
-      <div>
-        <NextLink className={caps} href="mailto:westleyaaronferguson@gmail.com">
-          westleyaaronferguson@gmail.com
-        </NextLink>
-        <br />
-        <NextLink className={caps} href="tel:321-278-2039">
-          321 278 2039
-        </NextLink>
-      </div>
+      <ul className="max-md:text-right">
+        <li>
+          <NextLink
+            className={caps}
+            href="mailto:westleyaaronferguson@gmail.com"
+          >
+            Email
+          </NextLink>
+        </li>
+        <li>
+          <NextLink className={caps} href="tel:321-278-2039">
+            321 278 2039
+          </NextLink>
+        </li>
+      </ul>
 
-      <ul>
+      <ul className="text-right max-md:col-span-2">
         <li className={headerListItem}>
-          <NextLink className={caps} href="">
+          <NextLink
+            className={caps}
+            href="https://westleyferguson.myportfolio.com/"
+          >
             Portfolio
           </NextLink>
         </li>
         <li className={headerListItem}>
-          <NextLink className={caps} href="">
+          <NextLink
+            className={caps}
+            href="https://www.instagram.com/westleyaaronferguson/"
+          >
             Instagram
           </NextLink>
         </li>
