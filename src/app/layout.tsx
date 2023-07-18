@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={clsx(fontManrope.variable, fontPlexMono.variable, 'bg-sand')}
       >
-        <div className="max-w-[1920px] mx-auto px-5 md:pr-20 xl:pr-36 leading-tight py-4">
+        <div className="max-w-[1920px] mx-auto px-5 md:pr-20 pt-4 pb-12 xl:pr-36 leading-tight">
           <Header />
           {children}
         </div>
