@@ -53,7 +53,7 @@ export default async function Home() {
       {brands ? (
         <section className={section.root}>
           <h2 className={section.heading}>Brands</h2>
-          <ul>
+          <ul className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-y-0.5 gap-x-10 xl:gap-x-16">
             {brands.map((brand, index) => (
               <li className={caps} key={index}>
                 {brand}
